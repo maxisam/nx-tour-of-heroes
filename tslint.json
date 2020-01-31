@@ -54,7 +54,7 @@
           },
           {
             "sourceTag": "type:app",
-            "onlyDependOnLibsWithTags": ["type:feature", "type:ui"]
+            "onlyDependOnLibsWithTags": ["type:animations", "type:feature", "type:ui"]
           },
           {
             "sourceTag": "type:feature",

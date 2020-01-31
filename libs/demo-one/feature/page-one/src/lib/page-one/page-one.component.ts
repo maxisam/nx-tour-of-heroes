@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Page } from '@nx-demo/shared/models';
 import { Subject } from 'rxjs';
@@ -13,7 +14,9 @@ export class PageOneComponent implements OnInit, OnDestroy {
   private unsubscribe$: Subject<void> = new Subject<void>();
   page: Page;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private titleService: Title) {
+    titleService.setTitle('Page One');
+  }
 
   ngOnInit() {
     // from page resolver

@@ -4,17 +4,17 @@
 
   <!-- TODO: nav -- move to feature lib? -->
   <nav>
-    <button class="animation-triggers" routerLink="/page-one" routerLinkActive="active">
+    <button routerLink="/page-one" routerLinkActive="active">
       Page One
     </button>
-    <button class="animation-triggers" routerLink="/page-two" routerLinkActive="active">
+    <button routerLink="/page-two" routerLinkActive="active">
       Page Two
     </button>
   </nav>
 
   <!-- pages -->
   <!-- TODO: make this a component wrapper and move animation -->
-  <div class="router-wrapper" [@pageLoad]="getState(o)">
+  <div [@pageLoad]="getState(o)">
     <router-outlet #o="outlet"></router-outlet>
   </div>
 </main>
