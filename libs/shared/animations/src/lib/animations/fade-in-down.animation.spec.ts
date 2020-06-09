@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { fadeInDownAnimation } from './fade-in-down.animation';
@@ -29,19 +29,22 @@ describe('fadeInDownAnimation', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-    component.pageLoaded = true; // 0 => 1
     fixture.detectChanges();
   });
 
   describe('fadeInDown transition 0 => 1', () => {
-    it('should update the element opacity from 0 to 1', async(() => {
+    it('should update the element opacity from 0 to 1', fakeAsync(() => {
+      expect(componentDiv().style.opacity).toBe('0');
+      component.pageLoaded = true; // 0 => 1
+      fixture.detectChanges();
+      // tick(1000);
       fixture.whenRenderingDone().then(() => {
         expect(componentDiv().style.opacity).toBe('1');
       });
     }));
   });
 
-  describe('fadeInDown transition 1 => 0', () => {
+  /* describe('fadeInDown transition 1 => 0', () => {
     it('should update the element opacity from 1 to 0', async(() => {
       component.pageLoaded = false;
       fixture.detectChanges();
@@ -49,5 +52,5 @@ describe('fadeInDownAnimation', () => {
         expect(componentDiv().style.opacity).toBe('0');
       });
     }));
-  });
+  }); */
 });
