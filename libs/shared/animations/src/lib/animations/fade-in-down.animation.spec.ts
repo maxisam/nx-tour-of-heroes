@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { fadeInDownAnimation } from './fade-in-down.animation';
@@ -29,28 +29,36 @@ describe('fadeInDownAnimation', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   describe('fadeInDown transition 0 => 1', () => {
-    it('should update the element opacity from 0 to 1', fakeAsync(() => {
+    beforeEach(() => {
+      fixture.detectChanges();
+    });
+
+    it('should update the element opacity from 0 to 1', async(() => {
       expect(componentDiv().style.opacity).toBe('0');
       component.pageLoaded = true; // 0 => 1
       fixture.detectChanges();
-      // tick(1000);
       fixture.whenRenderingDone().then(() => {
         expect(componentDiv().style.opacity).toBe('1');
       });
     }));
   });
 
-  /* describe('fadeInDown transition 1 => 0', () => {
-    it('should update the element opacity from 1 to 0', async(() => {
-      component.pageLoaded = false;
+  describe('fadeInDown transition 1 => 0', () => {
+    beforeEach(() => {
+      component.pageLoaded = true; // 0 => 1
       fixture.detectChanges();
+    });
+
+    it('should update the element opacity from 1 to 0', async(() => {
+      expect(componentDiv().style.opacity).toBe('1');
       fixture.whenRenderingDone().then(() => {
+        component.pageLoaded = false; // 1 => 0
+        fixture.detectChanges();
         expect(componentDiv().style.opacity).toBe('0');
       });
     }));
-  }); */
+  });
 });
