@@ -4,9 +4,17 @@
   & h1 {
     font-size: 125px;
     text-align: center;
+
+    @media (max-width: 550px) {
+      font-size: 50px;
+    }
   }
   & p {
     font-size: 50px;
     text-align: center;
+
+    @media (max-width: 550px) {
+      font-size: 20px;
+    }
   }
 }
